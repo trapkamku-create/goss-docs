@@ -20,10 +20,17 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         if (section === 'laws') {
             document.getElementById('section-laws').classList.remove('hidden');
         } else if (section === 'docs') {
-            // Запрос пароля или пропуск, если уже введён
-            if (sessionStorage.getItem('osb_auth') === 'true') {
+            // Проверка пароля с учётом 6 часов
+            const authTime = localStorage.getItem('osb_auth_time');
+            const sixHours = 6 * 60 * 60 * 1000; // 6 часов в миллисекундах
+            const now = Date.now();
+
+            if (authTime && (now - parseInt(authTime)) < sixHours) {
+                // Пароль ещё действителен
                 document.getElementById('section-docs').classList.remove('hidden');
             } else {
+                // Пароль истёк или не вводился
+                localStorage.removeItem('osb_auth_time');
                 document.getElementById('password-modal').classList.remove('hidden');
                 document.getElementById('password-input').value = '';
                 document.getElementById('password-error').classList.add('hidden');
@@ -40,7 +47,8 @@ const CORRECT_PASSWORD = 'OSB-837-D04-2193';
 document.getElementById('password-submit').addEventListener('click', () => {
     const input = document.getElementById('password-input').value;
     if (input === CORRECT_PASSWORD) {
-        sessionStorage.setItem('osb_auth', 'true');
+        // Сохраняем время успешного ввода
+        localStorage.setItem('osb_auth_time', Date.now().toString());
         document.getElementById('password-modal').classList.add('hidden');
         document.getElementById('section-docs').classList.remove('hidden');
     } else {
