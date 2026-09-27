@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Внутренний портал организации</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="https://s.fotora.ru/bbdeb714cc6cb543.png" alt="Герб" class="emblem">
+        <h1>ГАИ — Amazing Online</h1>
+        <p>Внутренний портал организации</p>
+    </header>
+
+    <nav class="main-nav">
+        <button class="nav-btn active">Законодательство</button>
+        <button class="nav-btn">Лекции ОРЛС</button>
+        <button class="nav-btn">Документация ОСБ</button>
+        <button class="nav-btn">Государственная тайна</button>
+    </nav>
+
+    <main class="document-form">
+        <h2>Документ</h2>
+
+        <section class="form-section">
+            <h3>1. Выберите документ</h3>
+            <select id="doc-type">
+                <option value="postanovlenie">Постановление о начале служебной проверки</option>
+                <option value="rezultaty">Результаты служебной проверки</option>
+                <option value="akt">Акт проведения плановой проверки</option>
+            </select>
+        </section>
+
+        <section class="form-section">
+            <h3>2. Данные</h3>
+            <div class="form-grid">
+                <label>Дата инцидента <input type="date" id="incident-date"></label>
+                <label>Время инцидента <input type="time" id="incident-time"></label>
+                <label>Должность проверяемого <input type="text" id="check-position"></label>
+                <label>Звание проверяемого <input type="text" id="check-rank"></label>
+                <label>ФИО проверяемого <input type="text" id="check-name"></label>
+                <label>Должность ответственного <input type="text" id="responsible-position"></label>
+                <label>Звание ответственного <input type="text" id="responsible-rank"></label>
+                <label>ФИО ответственного <input type="text" id="responsible-name"></label>
+            </div>
+            <label class="full-width">Объяснение ситуации (со своих слов или со слов заявителя)
+                <textarea id="situation" rows="5"></textarea>
+            </label>
+        </section>
+
+        <section class="form-section">
+            <h3>3. Подпись и печать</h3>
+            <div class="upload-grid">
+                <label class="upload-box">
+                    <span>Подпись</span>
+                    <input type="file" accept="image/*" id="signature-upload">
+                    <p>Нажмите, чтобы загрузить изображение</p>
+                    <small>Убрать белый фон</small>
+                </label>
+                <label class="upload-box">
+                    <span>Печать</span>
+                    <input type="file" accept="image/*" id="stamp-upload">
+                    <p>Нажмите, чтобы загрузить изображение</p>
+                    <small>Убрать белый фон</small>
+                </label>
+            </div>
+        </section>
+
+        <button id="download-btn" class="download-btn">Скачать документ (.docx)</button>
+    </main>
+
+    <footer>
+        <p>Игровой проект Amazing Online</p>
+    </footer>
+
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
