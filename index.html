@@ -14,13 +14,13 @@
     </header>
 
     <nav class="main-nav">
-        <button class="nav-btn active">Законодательство</button>
-        <button class="nav-btn">Лекции ОРЛС</button>
-        <button class="nav-btn">Документация ОСБ</button>
-        <button class="nav-btn">Государственная тайна</button>
+        <button class="nav-btn" data-section="laws">Законодательство</button>
+        <button class="nav-btn" data-section="lectures">Лекции ОРЛС</button>
+        <button class="nav-btn active" data-section="docs">Документация ОСБ</button>
+        <button class="nav-btn" data-section="secret">Государственная тайна</button>
     </nav>
 
-    <main class="document-form">
+    <main class="document-form" id="section-docs">
         <h2>Документ</h2>
 
         <section class="form-section">
@@ -69,6 +69,10 @@
 
         <button id="download-btn" class="download-btn">Скачать документ (.docx)</button>
     </main>
+
+    <div class="section-placeholder" id="section-laws">Раздел «Законодательство» в разработке.</div>
+    <div class="section-placeholder" id="section-lectures">Раздел «Лекции ОРЛС» в разработке.</div>
+    <div class="section-placeholder" id="section-secret">Раздел «Государственная тайна» в разработке.</div>
 
     <footer>
         <p>Игровой проект Amazing Online</p>
