@@ -20,7 +20,6 @@ body {
     min-height: 100vh;
 }
 
-/* Скрытие */
 .hidden {
     display: none !important;
 }
@@ -151,13 +150,16 @@ body {
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 20px;
-    max-height: 600px;
+    height: 500px;
+    max-height: 60vh;
 }
 
 .laws-list {
     overflow-y: auto;
+    overflow-x: hidden;
     border-right: 1px solid var(--border-color);
     padding-right: 15px;
+    height: 100%;
 }
 
 .law-item {
@@ -182,9 +184,34 @@ body {
 
 .laws-content {
     overflow-y: auto;
+    overflow-x: hidden;
     padding-left: 15px;
     font-size: 0.95rem;
     white-space: pre-wrap;
+    height: 100%;
+}
+
+/* Скроллбар */
+.laws-list::-webkit-scrollbar,
+.laws-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.laws-list::-webkit-scrollbar-track,
+.laws-content::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 4px;
+}
+
+.laws-list::-webkit-scrollbar-thumb,
+.laws-content::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.laws-list::-webkit-scrollbar-thumb:hover,
+.laws-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
 }
 
 /* ===== Форма документа ===== */
@@ -317,5 +344,6 @@ textarea {
     .upload-grid,
     .laws-container {
         grid-template-columns: 1fr;
+        height: auto;
     }
 }
