@@ -20,17 +20,17 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         if (section === 'laws') {
             document.getElementById('section-laws').classList.remove('hidden');
         } else if (section === 'docs') {
-            // Проверка пароля с учётом 6 часов
-            const authTime = localStorage.getItem('osb_auth_time');
-            const sixHours = 6 * 60 * 60 * 1000; // 6 часов в миллисекундах
+            // Проверка: sessionStorage (до закрытия браузера) + 6 часов
+            const authTime = sessionStorage.getItem('osb_auth_time');
+            const sixHours = 6 * 60 * 60 * 1000; // 6 часов
             const now = Date.now();
 
             if (authTime && (now - parseInt(authTime)) < sixHours) {
-                // Пароль ещё действителен
+                // Пароль ещё действителен в этой сессии
                 document.getElementById('section-docs').classList.remove('hidden');
             } else {
-                // Пароль истёк или не вводился
-                localStorage.removeItem('osb_auth_time');
+                // Пароль не вводился или истёк
+                sessionStorage.removeItem('osb_auth_time');
                 document.getElementById('password-modal').classList.remove('hidden');
                 document.getElementById('password-input').value = '';
                 document.getElementById('password-error').classList.add('hidden');
@@ -47,8 +47,8 @@ const CORRECT_PASSWORD = 'OSB-837-D04-2193';
 document.getElementById('password-submit').addEventListener('click', () => {
     const input = document.getElementById('password-input').value;
     if (input === CORRECT_PASSWORD) {
-        // Сохраняем время успешного ввода
-        localStorage.setItem('osb_auth_time', Date.now().toString());
+        // Сохраняем время успешного ввода (только на сессию)
+        sessionStorage.setItem('osb_auth_time', Date.now().toString());
         document.getElementById('password-modal').classList.add('hidden');
         document.getElementById('section-docs').classList.remove('hidden');
     } else {
