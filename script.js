@@ -1,3 +1,9 @@
+// --- Стартовый экран ---
+document.getElementById('start-btn').addEventListener('click', () => {
+    document.getElementById('splash-screen').style.display = 'none';
+    document.getElementById('main-portal').classList.remove('hidden');
+});
+
 // --- Переключение разделов ---
 document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
