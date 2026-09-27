@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <img src="https://fotora.ru/uploaded/?ID=FZVZI27092026163851" alt="Герб" class="emblem">
+        <img src="img/gerb.png" alt="Герб" class="emblem">
         <h1>ГАИ — Amazing Online</h1>
         <p>Внутренний портал организации</p>
     </header>
@@ -37,6 +37,8 @@
             <div class="form-grid">
                 <label>Дата инцидента <input type="date" id="incident-date"></label>
                 <label>Время инцидента <input type="time" id="incident-time"></label>
+                <label>Место происшествия <input type="text" id="incident-place" placeholder="г. Арзамас, пост «Южный»"></label>
+                <label>ФИО заявителя <input type="text" id="applicant-name"></label>
                 <label>Должность проверяемого <input type="text" id="check-position"></label>
                 <label>Звание проверяемого <input type="text" id="check-rank"></label>
                 <label>ФИО проверяемого <input type="text" id="check-name"></label>
@@ -45,7 +47,7 @@
                 <label>ФИО ответственного <input type="text" id="responsible-name"></label>
             </div>
             <label class="full-width">Объяснение ситуации (со своих слов или со слов заявителя)
-                <textarea id="situation" rows="5"></textarea>
+                <textarea id="situation" rows="6"></textarea>
             </label>
         </section>
 
@@ -56,13 +58,11 @@
                     <span>Подпись</span>
                     <input type="file" accept="image/*" id="signature-upload">
                     <p>Нажмите, чтобы загрузить изображение</p>
-                    <small>Убрать белый фон</small>
                 </label>
                 <label class="upload-box">
                     <span>Печать</span>
                     <input type="file" accept="image/*" id="stamp-upload">
                     <p>Нажмите, чтобы загрузить изображение</p>
-                    <small>Убрать белый фон</small>
                 </label>
             </div>
         </section>
