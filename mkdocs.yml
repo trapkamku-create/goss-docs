@@ -1,0 +1,21 @@
+site_name: Документация ОСБ ГАИ
+site_url: https://ваш-логин.github.io/имя-репозитория/
+theme:
+  name: material
+  language: ru
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Переключить на тёмную тему
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Переключить на светлую тему
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
