@@ -30,13 +30,14 @@ body {
 
 header {
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px 20px 20px;
 }
 
 .emblem {
     width: 100px;
     height: auto;
     margin-bottom: 15px;
+    background: transparent;
 }
 
 header h1 {
@@ -65,6 +66,7 @@ header p {
     border-radius: 6px;
     cursor: pointer;
     transition: 0.2s;
+    font-size: 0.95rem;
 }
 
 .nav-btn.active,
@@ -82,6 +84,10 @@ header p {
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.document-form.hidden {
+    display: none;
 }
 
 .document-form h2 {
@@ -167,6 +173,17 @@ textarea {
 
 .download-btn:hover {
     opacity: 0.85;
+}
+
+.section-placeholder {
+    display: none;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 40px;
+    text-align: center;
+    background: var(--surface-color);
+    border-radius: 10px;
+    color: var(--text-color);
 }
 
 footer {
