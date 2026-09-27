@@ -1,5 +1,5 @@
-site_name: Документация ОСБ ГАИ
-site_url: https://ваш-логин.github.io/имя-репозитория/
+site_name: ГАИ — Amazing Online
+site_url: https://trapkamku-create.github.io/goss-docs/
 theme:
   name: material
   language: ru
@@ -19,3 +19,5 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+nav:
+  - Главная: index.md
