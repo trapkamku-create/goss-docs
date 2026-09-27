@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Внутренний портал организации</title>
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 
@@ -58,21 +58,123 @@
 
             <section class="form-section">
                 <h3>2. Данные</h3>
-                <div class="form-grid">
-                    <label>Дата инцидента <input type="date" id="incident-date"></label>
-                    <label>Время инцидента <input type="time" id="incident-time"></label>
-                    <label>Место происшествия <input type="text" id="incident-place"></label>
-                    <label>ФИО заявителя <input type="text" id="applicant-name"></label>
-                    <label>Должность проверяемого <input type="text" id="check-position"></label>
-                    <label>Звание проверяемого <input type="text" id="check-rank"></label>
-                    <label>ФИО проверяемого <input type="text" id="check-name"></label>
-                    <label>Должность ответственного <input type="text" id="responsible-position"></label>
-                    <label>Звание ответственного <input type="text" id="responsible-rank"></label>
-                    <label>ФИО ответственного <input type="text" id="responsible-name"></label>
+
+                <!-- Поля для «Постановления» -->
+                <div id="fields-postanovlenie" class="fields-group">
+                    <div class="form-grid">
+                        <label>Дата инцидента <input type="date" id="incident-date"></label>
+                        <label>Время инцидента <input type="time" id="incident-time"></label>
+                        <label>Место происшествия <input type="text" id="incident-place"></label>
+                        <label>ФИО заявителя <input type="text" id="applicant-name"></label>
+                        <label>Должность проверяемого <input type="text" id="check-position"></label>
+                        <label>Звание проверяемого <input type="text" id="check-rank"></label>
+                        <label>ФИО проверяемого <input type="text" id="check-name"></label>
+                        <label>Должность ответственного <input type="text" id="responsible-position"></label>
+                        <label>Звание ответственного <input type="text" id="responsible-rank"></label>
+                        <label>ФИО ответственного <input type="text" id="responsible-name"></label>
+                    </div>
+                    <label class="full-width">Объяснение ситуации
+                        <textarea id="situation" rows="6"></textarea>
+                    </label>
                 </div>
-                <label class="full-width">Объяснение ситуации
-                    <textarea id="situation" rows="6"></textarea>
-                </label>
+
+                <!-- Поля для «Результатов» -->
+                <div id="fields-rezultaty" class="fields-group hidden">
+                    <div class="form-grid">
+                        <label>Дата начала проверки <input type="date" id="check-start-date"></label>
+                        <label>Дата инцидента <input type="date" id="res-incident-date"></label>
+                        <label>Время инцидента <input type="time" id="res-incident-time"></label>
+                        <label>Должность проверяемого <input type="text" id="res-check-position"></label>
+                        <label>Звание проверяемого <input type="text" id="res-check-rank"></label>
+                        <label>ФИО проверяемого <input type="text" id="res-check-name"></label>
+                    </div>
+                    <label class="full-width">Суть инцидента
+                        <textarea id="res-situation" rows="5"></textarea>
+                    </label>
+                    <div class="form-grid">
+                        <label>Статья дисциплинарного устава <input type="text" id="res-article"></label>
+                        <label>Пункт статьи <input type="text" id="res-point"></label>
+                    </div>
+                    <label class="full-width">Что регламентирует пункт
+                        <textarea id="res-regulation" rows="4"></textarea>
+                    </label>
+                    <label class="full-width">Дополнительные мероприятия и принятые решения
+                        <textarea id="res-additional" rows="4"></textarea>
+                    </label>
+                    <label class="full-width">Вывод по результатам проверки
+                        <textarea id="res-conclusion" rows="4"></textarea>
+                    </label>
+                    <div class="form-grid">
+                        <label>Должность подписанта <input type="text" id="res-signer-position"></label>
+                        <label>Фамилия И.О. подписанта <input type="text" id="res-signer-name"></label>
+                        <label>Звание подписанта <input type="text" id="res-signer-rank"></label>
+                    </div>
+                </div>
+
+                <!-- Поля для «Акта» -->
+                <div id="fields-akt" class="fields-group hidden">
+                    <div class="form-grid">
+                        <label>Дата проверки <input type="date" id="akt-date"></label>
+                        <label>Время проверки <input type="time" id="akt-time"></label>
+                        <label>Место проверки <input type="text" id="akt-place"></label>
+                        <label>Проверяемое подразделение <input type="text" id="akt-unit"></label>
+                    </div>
+
+                    <label class="full-width">Ответственный проверяющий (должность, звание, ФИО)
+                        <input type="text" id="akt-responsible">
+                    </label>
+
+                    <label class="full-width">Остальные проверяющие (должность, звание, ФИО)
+                        <textarea id="akt-others" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Запрещённые вещества — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-substances-count">
+                    </label>
+
+                    <label class="full-width">Запрещённые вещества — нарушители (ФИО, должность, звание — описание/количество)
+                        <textarea id="akt-substances-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Запрещённое оружие — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-weapons-count">
+                    </label>
+
+                    <label class="full-width">Запрещённое оружие — нарушители (ФИО, должность, звание — описание/количество)
+                        <textarea id="akt-weapons-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Неоплаченные штрафы — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-fines-count">
+                    </label>
+
+                    <label class="full-width">Неоплаченные штрафы — нарушители (ФИО, должность, звание — сумма задолженности/количество штрафов)
+                        <textarea id="akt-fines-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Ошибки в документах (трудовая книжка) — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-docs-count">
+                    </label>
+
+                    <label class="full-width">Ошибки в документах (трудовая книжка) — нарушители (ФИО, должность, звание — краткое описание ошибки)
+                        <textarea id="akt-docs-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Просроченные лицензии — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-licenses-count">
+                    </label>
+
+                    <label class="full-width">Просроченные лицензии — нарушители (ФИО, должность, звание — тип лицензии/дата истечения)
+                        <textarea id="akt-licenses-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <div class="form-grid">
+                        <label>Должность подписывающего (перед «ОСБ ГАИ») <input type="text" id="akt-signer-position"></label>
+                        <label>Фамилия И.О. подписывающего <input type="text" id="akt-signer-name"></label>
+                        <label>Специальное звание подписывающего (перед «полиции») <input type="text" id="akt-signer-rank"></label>
+                    </div>
+                </div>
+
             </section>
 
             <section class="form-section">
