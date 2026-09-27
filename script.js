@@ -15,16 +15,52 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         document.getElementById('section-docs').classList.add('hidden');
         document.querySelectorAll('.section-placeholder').forEach(el => el.style.display = 'none');
 
-        // Показать нужный
         const section = btn.dataset.section;
+
         if (section === 'laws') {
             document.getElementById('section-laws').classList.remove('hidden');
         } else if (section === 'docs') {
-            document.getElementById('section-docs').classList.remove('hidden');
+            // Запрос пароля или пропуск, если уже введён
+            if (sessionStorage.getItem('osb_auth') === 'true') {
+                document.getElementById('section-docs').classList.remove('hidden');
+            } else {
+                document.getElementById('password-modal').classList.remove('hidden');
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-error').classList.add('hidden');
+            }
         } else {
             document.getElementById('section-' + section).style.display = 'block';
         }
     });
+});
+
+// --- Проверка пароля для «Документация ОСБ» ---
+const CORRECT_PASSWORD = 'OSB-837-D04-2193';
+
+document.getElementById('password-submit').addEventListener('click', () => {
+    const input = document.getElementById('password-input').value;
+    if (input === CORRECT_PASSWORD) {
+        sessionStorage.setItem('osb_auth', 'true');
+        document.getElementById('password-modal').classList.add('hidden');
+        document.getElementById('section-docs').classList.remove('hidden');
+    } else {
+        document.getElementById('password-error').classList.remove('hidden');
+    }
+});
+
+document.getElementById('password-cancel').addEventListener('click', () => {
+    document.getElementById('password-modal').classList.add('hidden');
+    // Вернуть активную вкладку на «Законодательство»
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.nav-btn[data-section="laws"]').classList.add('active');
+    document.getElementById('section-laws').classList.remove('hidden');
+});
+
+// Enter для ввода пароля
+document.getElementById('password-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('password-submit').click();
+    }
 });
 
 // --- Загрузка законов ---
