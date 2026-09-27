@@ -1,3 +1,21 @@
+// --- Переключение разделов ---
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.getElementById('section-docs').classList.add('hidden');
+        document.querySelectorAll('.section-placeholder').forEach(el => el.style.display = 'none');
+
+        const section = btn.dataset.section;
+        if (section === 'docs') {
+            document.getElementById('section-docs').classList.remove('hidden');
+        } else {
+            document.getElementById('section-' + section).style.display = 'block';
+        }
+    });
+});
+
 // --- Переключение темы ---
 const themeToggle = document.getElementById('theme-toggle');
 const savedTheme = localStorage.getItem('theme');
