@@ -57,7 +57,7 @@ document.getElementById('download-btn').addEventListener('click', () => {
 
             const htmlContent = `
                 <div style="text-align: center; margin-bottom: 10px;">
-                    <img src="https://trapkamku-create.github.io/goss-docs/img/gerb.png" style="height: 110px;" />
+                    <img src="https://trapkamku-create.github.io/goss-docs/img/i.webp" style="height: 110px;" />
                 </div>
 
                 <p style="text-align: center; font-weight: bold; font-size: 13pt; margin: 0;">
