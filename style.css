@@ -1,349 +1,91 @@
-:root {
-    --bg-color: #0d1b2a;
-    --surface-color: #1b263b;
-    --text-color: #e0e0e0;
-    --accent-color: #d4af37;
-    --border-color: #2a3a4a;
+/* ===== Анимации ===== */
+.nav-btn,
+.splash-btn,
+.download-btn,
+.law-item,
+.upload-box,
+input,
+textarea,
+#doc-type {
+    transition: all 0.25s ease;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    min-height: 100vh;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* ===== Стартовый экран ===== */
-#splash-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0a1628;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    z-index: 9999;
-}
-
-.splash-emblem {
-    width: 180px;
-    height: auto;
-}
-
-.splash-subtitle {
-    color: #e0e0e0;
-    font-size: 1rem;
-}
-
-.splash-btn {
-    background: linear-gradient(180deg, #e0b84c 0%, #c9a233 100%);
-    color: #1a1a1a;
-    border: none;
-    padding: 14px 40px;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-    transition: 0.2s;
-}
-
-.splash-btn:hover {
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
-    transform: scale(1.03);
-}
-
-.splash-footer {
-    position: absolute;
-    bottom: 25px;
-    color: #8a8a8a;
-    font-size: 0.85rem;
-}
-
-/* ===== Основной портал ===== */
-#main-portal header {
-    text-align: center;
-    padding: 40px 20px 20px;
-}
-
-.emblem {
-    width: 100px;
-    height: auto;
-    margin-bottom: 15px;
-}
-
-#main-portal h1 {
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
-
-#main-portal header p {
-    color: var(--accent-color);
-}
-
-.main-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px 20px;
-    flex-wrap: wrap;
-}
-
-.nav-btn {
-    background: var(--surface-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.nav-btn.active,
 .nav-btn:hover {
-    background: var(--accent-color);
-    color: #0d1b2a;
-    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
-/* ===== Раздел «Законодательство» ===== */
-.laws-section {
-    max-width: 1100px;
-    margin: 30px auto;
-    background: var(--surface-color);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+.nav-btn:active {
+    transform: translateY(0) scale(0.97);
 }
 
-.laws-section h2 {
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-#laws-search {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-}
-
-.laws-container {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 20px;
-    height: 500px;
-    max-height: 60vh;
-}
-
-.laws-list {
-    overflow-y: auto;
-    overflow-x: hidden;
-    border-right: 1px solid var(--border-color);
-    padding-right: 15px;
-    height: 100%;
-}
-
-.law-item {
-    padding: 10px;
-    margin-bottom: 8px;
-    background: var(--bg-color);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: 0.2s;
-}
-
-.law-item:hover {
-    background: var(--border-color);
-}
-
-.law-item.active {
-    background: var(--accent-color);
-    color: #0d1b2a;
-    font-weight: bold;
-}
-
-.laws-content {
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-left: 15px;
-    font-size: 0.95rem;
-    white-space: pre-wrap;
-    height: 100%;
-}
-
-/* Скроллбар */
-.laws-list::-webkit-scrollbar,
-.laws-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.laws-list::-webkit-scrollbar-track,
-.laws-content::-webkit-scrollbar-track {
-    background: var(--bg-color);
-    border-radius: 4px;
-}
-
-.laws-list::-webkit-scrollbar-thumb,
-.laws-content::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
-}
-
-.laws-list::-webkit-scrollbar-thumb:hover,
-.laws-content::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
-}
-
-/* ===== Форма документа ===== */
-.document-form {
-    max-width: 900px;
-    margin: 30px auto;
-    background: var(--surface-color);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.document-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--accent-color);
-}
-
-.form-section {
-    margin-bottom: 30px;
-}
-
-.form-section h3 {
-    margin-bottom: 15px;
-    color: var(--accent-color);
-}
-
-#doc-type,
-input[type="text"],
-input[type="date"],
-input[type="time"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-family: inherit;
-    margin-bottom: 10px;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.full-width {
-    display: block;
-    margin-top: 10px;
-}
-
-.upload-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.upload-box {
-    display: block;
-    border: 2px dashed var(--border-color);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.upload-box:hover {
-    border-color: var(--accent-color);
-}
-
-.upload-box input {
-    display: none;
-}
-
-.download-btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background: var(--accent-color);
-    color: #0d1b2a;
-    border: none;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
+.splash-btn:active {
+    transform: scale(0.96);
 }
 
 .download-btn:hover {
-    opacity: 0.85;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
 }
 
+.download-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.law-item:hover {
+    transform: translateX(4px);
+}
+
+.law-item:active {
+    transform: translateX(2px) scale(0.99);
+}
+
+.upload-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.upload-box:active {
+    transform: translateY(0) scale(0.99);
+}
+
+input:focus,
+textarea:focus,
+#doc-type:focus,
+#laws-search:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+/* Плавное появление блоков */
+.document-form,
+.laws-section,
 .section-placeholder {
-    display: none;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 40px;
-    text-align: center;
-    background: var(--surface-color);
-    border-radius: 10px;
+    animation: fadeIn 0.4s ease;
 }
 
-#main-portal footer {
-    text-align: center;
-    padding: 20px;
-    opacity: 0.6;
-    font-size: 0.9rem;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
-    color: var(--accent-color);
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 100;
+/* Плавное появление стартового экрана */
+#splash-screen {
+    animation: splashFade 0.8s ease;
 }
 
-@media (max-width: 700px) {
-    .form-grid,
-    .upload-grid,
-    .laws-container {
-        grid-template-columns: 1fr;
-        height: auto;
+@keyframes splashFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
