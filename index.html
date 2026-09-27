@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Внутренний портал организации</title>
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 
@@ -95,7 +95,7 @@
         </main>
 
         <!-- Заглушки -->
-        <div class="section-placeholder" id="section-lectures">Раздел «Лекции ОСБ» в разработке.</div>
+        <div class="section-placeholder" id="section-lectures">Раздел «Лекции для ОСБ» в разработке.</div>
         <div class="section-placeholder" id="section-secret">Раздел «Государственная тайна» в разработке.</div>
 
         <footer>
@@ -103,6 +103,19 @@
         </footer>
 
         <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </div>
+
+    <!-- Модальное окно пароля -->
+    <div id="password-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Введите пароль</h3>
+            <input type="password" id="password-input" placeholder="Пароль...">
+            <div class="modal-buttons">
+                <button id="password-submit" class="download-btn">Войти</button>
+                <button id="password-cancel" class="nav-btn">Отмена</button>
+            </div>
+            <p id="password-error" class="password-error hidden">Неверный пароль</p>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
