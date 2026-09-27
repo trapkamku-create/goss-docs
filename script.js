@@ -10,16 +10,56 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
+        // Скрыть все разделы
+        document.getElementById('section-laws').classList.add('hidden');
         document.getElementById('section-docs').classList.add('hidden');
         document.querySelectorAll('.section-placeholder').forEach(el => el.style.display = 'none');
 
+        // Показать нужный
         const section = btn.dataset.section;
-        if (section === 'docs') {
+        if (section === 'laws') {
+            document.getElementById('section-laws').classList.remove('hidden');
+        } else if (section === 'docs') {
             document.getElementById('section-docs').classList.remove('hidden');
         } else {
             document.getElementById('section-' + section).style.display = 'block';
         }
     });
+});
+
+// --- Загрузка законов ---
+let lawsData = {};
+
+fetch('laws.json')
+    .then(res => res.json())
+    .then(data => {
+        lawsData = data;
+        renderLawsList(Object.keys(data));
+    });
+
+function renderLawsList(keys) {
+    const list = document.getElementById('laws-list');
+    list.innerHTML = '';
+    keys.forEach(key => {
+        const div = document.createElement('div');
+        div.className = 'law-item';
+        div.textContent = key;
+        div.addEventListener('click', () => showLaw(key, div));
+        list.appendChild(div);
+    });
+}
+
+function showLaw(key, el) {
+    document.querySelectorAll('.law-item').forEach(i => i.classList.remove('active'));
+    if (el) el.classList.add('active');
+    document.getElementById('laws-content').textContent = lawsData[key] || 'Нет данных.';
+}
+
+// --- Поиск по законам ---
+document.getElementById('laws-search').addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    const filtered = Object.keys(lawsData).filter(key => key.toLowerCase().includes(query));
+    renderLawsList(filtered);
 });
 
 // --- Переключение темы ---
