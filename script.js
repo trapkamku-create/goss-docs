@@ -26,10 +26,8 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
             const now = Date.now();
 
             if (authTime && (now - parseInt(authTime)) < sixHours) {
-                // Пароль ещё действителен в этой сессии
                 document.getElementById('section-docs').classList.remove('hidden');
             } else {
-                // Пароль не вводился или истёк
                 sessionStorage.removeItem('osb_auth_time');
                 document.getElementById('password-modal').classList.remove('hidden');
                 document.getElementById('password-input').value = '';
@@ -47,7 +45,6 @@ const CORRECT_PASSWORD = 'OSB-837-D04-2193';
 document.getElementById('password-submit').addEventListener('click', () => {
     const input = document.getElementById('password-input').value;
     if (input === CORRECT_PASSWORD) {
-        // Сохраняем время успешного ввода (только на сессию)
         sessionStorage.setItem('osb_auth_time', Date.now().toString());
         document.getElementById('password-modal').classList.add('hidden');
         document.getElementById('section-docs').classList.remove('hidden');
@@ -58,7 +55,6 @@ document.getElementById('password-submit').addEventListener('click', () => {
 
 document.getElementById('password-cancel').addEventListener('click', () => {
     document.getElementById('password-modal').classList.add('hidden');
-    // Вернуть активную вкладку на «Законодательство»
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.nav-btn[data-section="laws"]').classList.add('active');
     document.getElementById('section-laws').classList.remove('hidden');
@@ -165,7 +161,7 @@ document.getElementById('download-btn').addEventListener('click', () => {
 
             const htmlContent = `
                 <div style="text-align: center; margin-bottom: 10px;">
-                    <img src="https://trapkamku-create.github.io/goss-docs/img/i.webp" style="height: 110px;" />
+                    <img src="https://s.fotora.ru/dad9f51f0ff6ab7e.png" style="height: 110px;" />
                 </div>
 
                 <p style="text-align: center; font-weight: bold; font-size: 13pt; margin: 0;">
