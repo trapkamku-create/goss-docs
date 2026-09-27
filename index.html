@@ -25,13 +25,26 @@
         </header>
 
         <nav class="main-nav">
-            <button class="nav-btn" data-section="laws">Законодательство</button>
+            <button class="nav-btn active" data-section="laws">Законодательство</button>
             <button class="nav-btn" data-section="lectures">Лекции ОРЛС</button>
-            <button class="nav-btn active" data-section="docs">Документация ОСБ</button>
+            <button class="nav-btn" data-section="docs">Документация ОСБ</button>
             <button class="nav-btn" data-section="secret">Государственная тайна</button>
         </nav>
 
-        <main class="document-form" id="section-docs">
+        <!-- Раздел «Законодательство» -->
+        <main class="laws-section" id="section-laws">
+            <h2>Законодательство</h2>
+            <input type="text" id="laws-search" placeholder="Поиск по законам и статьям...">
+            <div class="laws-container">
+                <aside class="laws-list" id="laws-list"></aside>
+                <article class="laws-content" id="laws-content">
+                    <p>Выберите закон слева.</p>
+                </article>
+            </div>
+        </main>
+
+        <!-- Раздел «Документация ОСБ» -->
+        <main class="document-form hidden" id="section-docs">
             <h2>Документ</h2>
 
             <section class="form-section">
@@ -48,7 +61,7 @@
                 <div class="form-grid">
                     <label>Дата инцидента <input type="date" id="incident-date"></label>
                     <label>Время инцидента <input type="time" id="incident-time"></label>
-                    <label>Место происшествия <input type="text" id="incident-place" placeholder="г. Арзамас, пост «Южный»"></label>
+                    <label>Место происшествия <input type="text" id="incident-place"></label>
                     <label>ФИО заявителя <input type="text" id="applicant-name"></label>
                     <label>Должность проверяемого <input type="text" id="check-position"></label>
                     <label>Звание проверяемого <input type="text" id="check-rank"></label>
@@ -57,7 +70,7 @@
                     <label>Звание ответственного <input type="text" id="responsible-rank"></label>
                     <label>ФИО ответственного <input type="text" id="responsible-name"></label>
                 </div>
-                <label class="full-width">Объяснение ситуации (со своих слов или со слов заявителя)
+                <label class="full-width">Объяснение ситуации
                     <textarea id="situation" rows="6"></textarea>
                 </label>
             </section>
@@ -81,7 +94,7 @@
             <button id="download-btn" class="download-btn">Скачать документ (.docx)</button>
         </main>
 
-        <div class="section-placeholder" id="section-laws">Раздел «Законодательство» в разработке.</div>
+        <!-- Заглушки -->
         <div class="section-placeholder" id="section-lectures">Раздел «Лекции ОРЛС» в разработке.</div>
         <div class="section-placeholder" id="section-secret">Раздел «Государственная тайна» в разработке.</div>
 
