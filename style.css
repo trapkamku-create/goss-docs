@@ -26,6 +26,62 @@ body {
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
     line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== Стартовый экран ===== */
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #0a1628 0%, #0d1b2a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.splash-emblem {
+    width: 180px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.splash-subtitle {
+    color: #e0e0e0;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.splash-btn {
+    background: linear-gradient(180deg, #e0b84c 0%, #c9a233 100%);
+    color: #1a1a1a;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+    transition: 0.2s;
+}
+
+.splash-btn:hover {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+    transform: scale(1.03);
+}
+
+.splash-footer {
+    position: absolute;
+    bottom: 25px;
+    color: #8a8a8a;
+    font-size: 0.85rem;
+}
+
+/* ===== Основной портал ===== */
+.main-portal.hidden {
+    display: none;
 }
 
 header {
