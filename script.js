@@ -163,9 +163,12 @@ document.getElementById('download-btn').addEventListener('click', () => {
                 ? `<img src="${stampData}" style="height: 120px;" />`
                 : '<p style="color: #999; font-style: italic;">(место для печати)</p>';
 
+            // Маленький герб по центру (серо-белый эффект через filter)
             const gerb = gerbBase64
-                ? `<div style="text-align: center; margin-bottom: 10px;">
-                    <img src="${gerbBase64}" style="height: 110px;" />
+                ? `<div style="text-align: center; margin-bottom: 5px;">
+                    <img src="${gerbBase64}"
+                         width="70" height="70"
+                         style="width: 70px; height: 70px; object-fit: contain; display: inline-block;" />
                    </div>`
                 : '';
 
