@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Внутренний портал организации</title>
-    <link rel="stylesheet" href="style.css?v=18">
+    <link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
 
@@ -54,7 +54,6 @@
             <section class="form-section">
                 <h3>2. Данные</h3>
 
-                <!-- Поля для «Постановления» -->
                 <div id="fields-postanovlenie" class="fields-group">
                     <div class="form-grid">
                         <label>Дата инцидента <input type="date" id="incident-date"></label>
@@ -82,7 +81,6 @@
                     </label>
                 </div>
 
-                <!-- Поля для «Результатов» -->
                 <div id="fields-rezultaty" class="fields-group hidden">
                     <div class="form-grid">
                         <label>Дата начала проверки <input type="date" id="check-start-date"></label>
@@ -115,7 +113,6 @@
                     </div>
                 </div>
 
-                <!-- Поля для «Акта» -->
                 <div id="fields-akt" class="fields-group hidden">
                     <div class="form-grid">
                         <label>Дата проверки <input type="date" id="akt-date"></label>
@@ -188,11 +185,19 @@
                         <span>Подпись</span>
                         <input type="file" accept="image/*" id="signature-upload">
                         <p>Нажмите, чтобы загрузить изображение</p>
+                        <span class="checkbox-label">
+                            <input type="checkbox" id="signature-remove-bg" checked>
+                            Убрать белый фон
+                        </span>
                     </label>
                     <label class="upload-box">
                         <span>Печать</span>
                         <input type="file" accept="image/*" id="stamp-upload">
                         <p>Нажмите, чтобы загрузить изображение</p>
+                        <span class="checkbox-label">
+                            <input type="checkbox" id="stamp-remove-bg" checked>
+                            Убрать белый фон
+                        </span>
                     </label>
                 </div>
             </section>
