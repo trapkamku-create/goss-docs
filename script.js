@@ -288,40 +288,47 @@ document.getElementById('download-btn').addEventListener('click', () => {
                 htmlContent = `
                     ${gerb}
                     ${header}
-                    <h1 style="text-align: center; font-size: 16pt; margin: 25px 0;">А К Т<br/>ПРОВЕДЕНИЯ ПЛАНОВОЙ ПРОВЕРКИ</h1>
+                    <h1 style="text-align: center; font-size: 16pt; margin: 30px 0;">АКТ ПРОВЕДЕНИЯ ПЛАНОВОЙ ПРОВЕРКИ</h1>
 
-                    <p style="text-align: justify;">
-                        ${aktDate} в ${aktTime} по адресу: ${aktPlace} была проведена плановая проверка подразделения: ${aktUnit}.
-                    </p>
-
-                    <p style="margin-top: 20px;"><strong>Состав проверяющих:</strong></p>
-                    <p><strong>Ответственный проверяющий:</strong> ${aktResponsible}</p>
-                    <p><strong>Остальные проверяющие:</strong></p>
+                    <p style="margin-top: 25px;"><strong>Состав проверяющих:</strong></p>
+                    <p>- ${aktResponsible} - ответственный</p>
                     <p style="white-space: pre-wrap;">${aktOthers}</p>
 
-                    <p style="margin-top: 20px;"><strong>Выявленные нарушения:</strong></p>
+                    <p style="margin-top: 25px;"><strong>Выявленные нарушения:</strong></p>
 
-                    <p><strong>Запрещённые вещества:</strong> ${aktSubstancesCount}</p>
-                    <p style="white-space: pre-wrap;">${aktSubstancesViolators}</p>
+                    <p style="margin-top: 15px;"><strong>1. Запрещенные вещества:</strong></p>
+                    <p>${aktSubstancesCount}</p>
+                    <p><strong>Данные нарушителей:</strong></p>
+                    <p style="white-space: pre-wrap;">${aktSubstancesViolators || '—'}</p>
 
-                    <p><strong>Запрещённое оружие:</strong> ${aktWeaponsCount}</p>
-                    <p style="white-space: pre-wrap;">${aktWeaponsViolators}</p>
+                    <p style="margin-top: 15px;"><strong>2. Запрещенное оружие:</strong></p>
+                    <p>${aktWeaponsCount}</p>
+                    <p><strong>Данные нарушителей:</strong></p>
+                    <p style="white-space: pre-wrap;">${aktWeaponsViolators || '—'}</p>
 
-                    <p><strong>Неоплаченные штрафы:</strong> ${aktFinesCount}</p>
-                    <p style="white-space: pre-wrap;">${aktFinesViolators}</p>
+                    <p style="margin-top: 15px;"><strong>3. Неоплаченные штрафы:</strong></p>
+                    <p>${aktFinesCount}</p>
+                    <p><strong>Данные нарушителей:</strong></p>
+                    <p style="white-space: pre-wrap;">${aktFinesViolators || '—'}</p>
 
-                    <p><strong>Ошибки в документах (трудовая книжка):</strong> ${aktDocsCount}</p>
-                    <p style="white-space: pre-wrap;">${aktDocsViolators}</p>
+                    <p style="margin-top: 15px;"><strong>4. Ошибки в документах (трудовая книжка):</strong></p>
+                    <p>${aktDocsCount}</p>
+                    <p><strong>Данные нарушителей:</strong></p>
+                    <p style="white-space: pre-wrap;">${aktDocsViolators || '—'}</p>
 
-                    <p><strong>Просроченные лицензии:</strong> ${aktLicensesCount}</p>
-                    <p style="white-space: pre-wrap;">${aktLicensesViolators}</p>
+                    <p style="margin-top: 15px;"><strong>5. Просроченные лицензии:</strong></p>
+                    <p>${aktLicensesCount}</p>
+                    <p><strong>Данные нарушителей:</strong></p>
+                    <p style="white-space: pre-wrap;">${aktLicensesViolators || '—'}</p>
 
-                    <br/><br/>
-                    <table style="width: 100%; margin-top: 40px;">
+                    <br/><br/><br/>
+
+                    <table style="width: 100%; margin-top: 60px;">
                         <tr>
                             <td style="width: 50%; vertical-align: bottom;">
                                 ${aktSignerPosition}<br/>
                                 ОСБ ГАИ<br/>
+                                по Нижегородской области<br/>
                                 ${aktSignerRank} полиции
                             </td>
                             <td style="width: 50%; text-align: right; vertical-align: bottom;">
