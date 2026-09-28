@@ -175,7 +175,6 @@ document.getElementById('download-btn').addEventListener('click', () => {
                 ОТДЕЛ СОБСТВЕННОЙ БЕЗОПАСНОСТИ
             </p>`;
 
-            // Функция для формирования блока подписи
             function buildSignatureBlock(position, rank, name) {
                 return `
                     <div style="margin-top: 60px; page-break-inside: avoid;">
@@ -206,9 +205,15 @@ document.getElementById('download-btn').addEventListener('click', () => {
                 const checkPosition = document.getElementById('check-position').value;
                 const checkRank = document.getElementById('check-rank').value;
                 const checkName = document.getElementById('check-name').value;
+                const inspectorPosition = document.getElementById('inspector-position').value;
+                const inspectorRank = document.getElementById('inspector-rank').value;
+                const inspectorName = document.getElementById('inspector-name').value;
                 const responsiblePosition = document.getElementById('responsible-position').value;
                 const responsibleRank = document.getElementById('responsible-rank').value;
                 const responsibleName = document.getElementById('responsible-name').value;
+                const signerPosition = document.getElementById('signer-position').value;
+                const signerRank = document.getElementById('signer-rank').value;
+                const signerName = document.getElementById('signer-name').value;
                 const situation = document.getElementById('situation').value;
 
                 htmlContent = `
@@ -231,17 +236,18 @@ document.getElementById('download-btn').addEventListener('click', () => {
                     <p style="margin-left: 20px;">- установить фактические соблюдения внутренних нормативных актов,
                     включая пункт 6 части 1 статьи 8 Дисциплинарного устава полиции.</p>
                     <h3 style="font-size: 13pt; margin-top: 25px;">В рамках проведения проверки:</h3>
-                    <p>1. Назначить ответственным за проведение служебной проверки
+                    <p>1. Назначить проверяющим ${inspectorPosition}, ${inspectorRank}, ${inspectorName}.</p>
+                    <p>2. Назначить ответственным за проведение служебной проверки
                     ${responsiblePosition}, ${responsibleRank}, ${responsibleName}.</p>
-                    <p>2. Принять меры по обеспечению сохранности и конфиденциальности материалов проверки.</p>
-                    <p>3. По завершению проведения служебной проверки подготовить заключительный акт
+                    <p>3. Принять меры по обеспечению сохранности и конфиденциальности материалов проверки.</p>
+                    <p>4. По завершению проведения служебной проверки подготовить заключительный акт
                     с полным изложением ситуации, выводами и рекомендациями, также внести соответствующие решения.</p>
-                    <p>4. Контроль за исполнением настоящего постановления оставляю за собой.</p>
-                    <p>5. Настоящее постановление вступает в законную силу с момента его подписания и публикации.</p>
+                    <p>5. Контроль за исполнением настоящего постановления оставляю за собой.</p>
+                    <p>6. Настоящее постановление вступает в законную силу с момента его подписания и публикации.</p>
                     <p style="margin-top: 20px;"><strong>Объяснение ситуации:</strong></p>
                     <p style="text-align: justify;">${situation}</p>
 
-                    ${buildSignatureBlock(responsiblePosition, responsibleRank, responsibleName)}
+                    ${buildSignatureBlock(signerPosition, signerRank, signerName)}
                 `;
 
             } else if (docType === 'rezultaty') {
