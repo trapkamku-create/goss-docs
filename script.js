@@ -1,3 +1,14 @@
+// --- Герб в base64 (загружается один раз) ---
+let gerbBase64 = '';
+
+fetch('https://s.fotora.ru/dad9f51f0ff6ab7e.png')
+    .then(res => res.blob())
+    .then(blob => {
+        const reader = new FileReader();
+        reader.onload = () => { gerbBase64 = reader.result; };
+        reader.readAsDataURL(blob);
+    });
+
 // --- Стартовый экран ---
 document.getElementById('start-btn').addEventListener('click', () => {
     document.getElementById('splash-screen').style.display = 'none';
@@ -150,17 +161,40 @@ document.getElementById('download-btn').addEventListener('click', () => {
 
             const stampHtml = stampData
                 ? `<img src="${stampData}" style="height: 120px;" />`
-                : '';
+                : '<p style="color: #999; font-style: italic;">(место для печати)</p>';
 
-            const gerb = `<div style="text-align: center; margin-bottom: 10px;">
-                <img src="https://s.fotora.ru/dad9f51f0ff6ab7e.png" style="height: 110px;" />
-            </div>`;
+            const gerb = gerbBase64
+                ? `<div style="text-align: center; margin-bottom: 10px;">
+                    <img src="${gerbBase64}" style="height: 110px;" />
+                   </div>`
+                : '';
 
             const header = `<p style="text-align: center; font-weight: bold; font-size: 13pt; margin: 0;">
                 ГОСУДАРСТВЕННАЯ АВТОМОБИЛЬНАЯ ИНСПЕКЦИЯ<br/>
                 ПО НИЖЕГОРОДСКОЙ ОБЛАСТИ<br/>
                 ОТДЕЛ СОБСТВЕННОЙ БЕЗОПАСНОСТИ
             </p>`;
+
+            // Функция для формирования блока подписи
+            function buildSignatureBlock(position, rank, name) {
+                return `
+                    <div style="margin-top: 60px; page-break-inside: avoid;">
+                        <table style="width: 100%; page-break-inside: avoid;">
+                            <tr>
+                                <td style="width: 50%; vertical-align: top; page-break-inside: avoid;">
+                                    <p style="margin: 0;">${position || '_____________________'}</p>
+                                    <p style="margin: 0;">${rank || '_____________________'}</p>
+                                </td>
+                                <td style="width: 50%; text-align: right; vertical-align: top; page-break-inside: avoid;">
+                                    ${signatureHtml}
+                                    <p style="margin: 0;">${name || '_____________________'}</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="text-align: center; margin-top: 30px;">${stampHtml}</div>
+                    </div>
+                `;
+            }
 
             let htmlContent = '';
 
@@ -206,6 +240,8 @@ document.getElementById('download-btn').addEventListener('click', () => {
                     <p>5. Настоящее постановление вступает в законную силу с момента его подписания и публикации.</p>
                     <p style="margin-top: 20px;"><strong>Объяснение ситуации:</strong></p>
                     <p style="text-align: justify;">${situation}</p>
+
+                    ${buildSignatureBlock(responsiblePosition, responsibleRank, responsibleName)}
                 `;
 
             } else if (docType === 'rezultaty') {
@@ -248,20 +284,7 @@ document.getElementById('download-btn').addEventListener('click', () => {
                     <p style="margin-top: 20px;"><strong>Вывод:</strong></p>
                     <p style="text-align: justify;">${resConclusion}</p>
 
-                    <br/><br/>
-                    <table style="width: 100%; margin-top: 40px;">
-                        <tr>
-                            <td style="width: 50%; vertical-align: bottom;">
-                                ${resSignerPosition}<br/>
-                                ${resSignerRank}
-                            </td>
-                            <td style="width: 50%; text-align: right; vertical-align: bottom;">
-                                ${signatureHtml}<br/>
-                                ${resSignerName}
-                            </td>
-                        </tr>
-                    </table>
-                    <div style="text-align: center; margin-top: 30px;">${stampHtml}</div>
+                    ${buildSignatureBlock(resSignerPosition, resSignerRank, resSignerName)}
                 `;
 
             } else if (docType === 'akt') {
@@ -291,53 +314,41 @@ document.getElementById('download-btn').addEventListener('click', () => {
                     <h1 style="text-align: center; font-size: 16pt; margin: 30px 0;">АКТ ПРОВЕДЕНИЯ ПЛАНОВОЙ ПРОВЕРКИ</h1>
 
                     <p style="margin-top: 25px;"><strong>Состав проверяющих:</strong></p>
-                    <p>- ${aktResponsible} - ответственный</p>
-                    <p style="white-space: pre-wrap;">${aktOthers}</p>
+                    <p>- ${aktResponsible || '—'} - ответственный</p>
+                    <p style="white-space: pre-wrap;">${aktOthers || ''}</p>
 
                     <p style="margin-top: 25px;"><strong>Выявленные нарушения:</strong></p>
 
                     <p style="margin-top: 15px;"><strong>1. Запрещенные вещества:</strong></p>
-                    <p>${aktSubstancesCount}</p>
+                    <p>${aktSubstancesCount || '—'}</p>
                     <p><strong>Данные нарушителей:</strong></p>
                     <p style="white-space: pre-wrap;">${aktSubstancesViolators || '—'}</p>
 
                     <p style="margin-top: 15px;"><strong>2. Запрещенное оружие:</strong></p>
-                    <p>${aktWeaponsCount}</p>
+                    <p>${aktWeaponsCount || '—'}</p>
                     <p><strong>Данные нарушителей:</strong></p>
                     <p style="white-space: pre-wrap;">${aktWeaponsViolators || '—'}</p>
 
                     <p style="margin-top: 15px;"><strong>3. Неоплаченные штрафы:</strong></p>
-                    <p>${aktFinesCount}</p>
+                    <p>${aktFinesCount || '—'}</p>
                     <p><strong>Данные нарушителей:</strong></p>
                     <p style="white-space: pre-wrap;">${aktFinesViolators || '—'}</p>
 
                     <p style="margin-top: 15px;"><strong>4. Ошибки в документах (трудовая книжка):</strong></p>
-                    <p>${aktDocsCount}</p>
+                    <p>${aktDocsCount || '—'}</p>
                     <p><strong>Данные нарушителей:</strong></p>
                     <p style="white-space: pre-wrap;">${aktDocsViolators || '—'}</p>
 
                     <p style="margin-top: 15px;"><strong>5. Просроченные лицензии:</strong></p>
-                    <p>${aktLicensesCount}</p>
+                    <p>${aktLicensesCount || '—'}</p>
                     <p><strong>Данные нарушителей:</strong></p>
                     <p style="white-space: pre-wrap;">${aktLicensesViolators || '—'}</p>
 
-                    <br/><br/><br/>
-
-                    <table style="width: 100%; margin-top: 60px;">
-                        <tr>
-                            <td style="width: 50%; vertical-align: bottom;">
-                                ${aktSignerPosition}<br/>
-                                ОСБ ГАИ<br/>
-                                по Нижегородской области<br/>
-                                ${aktSignerRank} полиции
-                            </td>
-                            <td style="width: 50%; text-align: right; vertical-align: bottom;">
-                                ${signatureHtml}<br/>
-                                ${aktSignerName}
-                            </td>
-                        </tr>
-                    </table>
-                    <div style="text-align: center; margin-top: 30px;">${stampHtml}</div>
+                    ${buildSignatureBlock(
+                        (aktSignerPosition ? aktSignerPosition + '<br/>ОСБ ГАИ<br/>по Нижегородской области' : 'ОСБ ГАИ<br/>по Нижегородской области'),
+                        aktSignerRank ? aktSignerRank + ' полиции' : '',
+                        aktSignerName
+                    )}
                 `;
             }
 
@@ -350,6 +361,8 @@ document.getElementById('download-btn').addEventListener('click', () => {
                             body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.4; }
                             p { margin: 6px 0; text-align: justify; }
                             h1 { text-align: center; }
+                            table { page-break-inside: avoid; }
+                            tr, td { page-break-inside: avoid; }
                         </style>
                     </head>
                     <body>${htmlContent}</body>
