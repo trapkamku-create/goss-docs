@@ -29,14 +29,13 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        document.getElementById('section-laws').classList.add('hidden');
         document.getElementById('section-docs').classList.add('hidden');
         document.querySelectorAll('.section-placeholder').forEach(el => el.style.display = 'none');
 
         const section = btn.dataset.section;
 
-        if (section === 'laws') {
-            document.getElementById('section-laws').classList.remove('hidden');
+        if (section === 'lectures') {
+            document.getElementById('section-lectures').style.display = 'block';
         } else if (section === 'docs') {
             const authTime = sessionStorage.getItem('osb_auth_time');
             const sixHours = 6 * 60 * 60 * 1000;
@@ -73,48 +72,14 @@ document.getElementById('password-submit').addEventListener('click', () => {
 document.getElementById('password-cancel').addEventListener('click', () => {
     document.getElementById('password-modal').classList.add('hidden');
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector('.nav-btn[data-section="laws"]').classList.add('active');
-    document.getElementById('section-laws').classList.remove('hidden');
+    document.querySelector('.nav-btn[data-section="lectures"]').classList.add('active');
+    document.getElementById('section-lectures').style.display = 'block';
 });
 
 document.getElementById('password-input').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         document.getElementById('password-submit').click();
     }
-});
-
-// --- Загрузка законов ---
-let lawsData = {};
-
-fetch('laws.json')
-    .then(res => res.json())
-    .then(data => {
-        lawsData = data;
-        renderLawsList(Object.keys(data));
-    });
-
-function renderLawsList(keys) {
-    const list = document.getElementById('laws-list');
-    list.innerHTML = '';
-    keys.forEach(key => {
-        const div = document.createElement('div');
-        div.className = 'law-item';
-        div.textContent = key;
-        div.addEventListener('click', () => showLaw(key, div));
-        list.appendChild(div);
-    });
-}
-
-function showLaw(key, el) {
-    document.querySelectorAll('.law-item').forEach(i => i.classList.remove('active'));
-    if (el) el.classList.add('active');
-    document.getElementById('laws-content').textContent = lawsData[key] || 'Нет данных.';
-}
-
-document.getElementById('laws-search').addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase();
-    const filtered = Object.keys(lawsData).filter(key => key.toLowerCase().includes(query));
-    renderLawsList(filtered);
 });
 
 // --- Переключение темы ---
