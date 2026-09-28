@@ -121,7 +121,6 @@ function removeWhiteBackground(file) {
                     const g = data[i + 1];
                     const b = data[i + 2];
 
-                    // Если пиксель близок к белому — делаем прозрачным
                     if (r > 230 && g > 230 && b > 230) {
                         data[i + 3] = 0;
                     }
@@ -171,12 +170,14 @@ document.getElementById('download-btn').addEventListener('click', () => {
         .then(([signatureData, stampData]) => {
 
             const signatureHtml = signatureData
-                ? `<img src="${signatureData}" style="height: 60px;" />`
+                ? `<img src="${signatureData}" width="130" height="50"
+                     style="width: 130px; height: 50px; object-fit: contain; display: block; margin: 0 auto;" />`
                 : '_______________________';
 
             const stampHtml = stampData
-                ? `<img src="${stampData}" style="height: 120px;" />`
-                : '<p style="color: #999; font-style: italic;">(место для печати)</p>';
+                ? `<img src="${stampData}" width="140" height="140"
+                     style="width: 140px; height: 140px; object-fit: contain; display: block; margin: 0 auto; opacity: 0.85;" />`
+                : '';
 
             const gerb = gerbBase64
                 ? `<div style="text-align: center; margin-bottom: 5px;">
@@ -201,12 +202,20 @@ document.getElementById('download-btn').addEventListener('click', () => {
                                     <p style="margin: 0;">${rank || '_____________________'}</p>
                                 </td>
                                 <td style="width: 50%; text-align: right; vertical-align: top; page-break-inside: avoid;">
-                                    ${signatureHtml}
+                                    <div style="position: relative; display: inline-block; width: 200px; height: 100px;">
+                                        ${stampHtml ? `
+                                            <div style="position: absolute; top: -30px; left: 0; width: 140px; height: 140px; z-index: 1;">
+                                                ${stampHtml}
+                                            </div>
+                                        ` : ''}
+                                        <div style="position: absolute; bottom: 0; right: 0; z-index: 2;">
+                                            ${signatureHtml}
+                                        </div>
+                                    </div>
                                     <p style="margin: 0;">${name || '_____________________'}</p>
                                 </td>
                             </tr>
                         </table>
-                        <div style="text-align: center; margin-top: 30px;">${stampHtml}</div>
                     </div>
                 `;
             }
