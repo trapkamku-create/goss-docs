@@ -86,11 +86,29 @@ body {
     transform: scale(0.96);
 }
 
-.splash-footer {
+/* ===== Нижний блок стартового экрана ===== */
+.splash-bottom {
     position: absolute;
     bottom: 25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.splash-footer {
     color: #8a8a8a;
     font-size: 0.85rem;
+    margin: 0;
+}
+
+.splash-disclaimer {
+    color: #5a6a7a;
+    font-size: 0.75rem;
+    font-style: italic;
+    margin: 0;
 }
 
 /* ===== Основной портал ===== */
