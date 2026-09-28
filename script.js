@@ -170,13 +170,13 @@ document.getElementById('download-btn').addEventListener('click', () => {
         .then(([signatureData, stampData]) => {
 
             const signatureHtml = signatureData
-                ? `<img src="${signatureData}" width="130" height="50"
-                     style="width: 130px; height: 50px; object-fit: contain; display: block; margin: 0 auto;" />`
+                ? `<img src="${signatureData}" width="130" height="55"
+                     style="width: 130px; height: 55px; object-fit: contain; display: inline-block;" />`
                 : '_______________________';
 
             const stampHtml = stampData
-                ? `<img src="${stampData}" width="140" height="140"
-                     style="width: 140px; height: 140px; object-fit: contain; display: block; margin: 0 auto; opacity: 0.85;" />`
+                ? `<img src="${stampData}" width="100" height="100"
+                     style="width: 100px; height: 100px; object-fit: contain; display: inline-block;" />`
                 : '';
 
             const gerb = gerbBase64
@@ -192,26 +192,23 @@ document.getElementById('download-btn').addEventListener('click', () => {
                 ОТДЕЛ СОБСТВЕННОЙ БЕЗОПАСНОСТИ
             </p>`;
 
+            // Блок подписи: слева должность/звание, справа печать + подпись + ФИО в одну строку
             function buildSignatureBlock(position, rank, name) {
                 return `
                     <div style="margin-top: 60px; page-break-inside: avoid;">
-                        <table style="width: 100%; page-break-inside: avoid;">
+                        <table style="width: 100%; page-break-inside: avoid; border-collapse: collapse;">
                             <tr>
-                                <td style="width: 50%; vertical-align: top; page-break-inside: avoid;">
+                                <td style="width: 40%; vertical-align: top; page-break-inside: avoid;">
                                     <p style="margin: 0;">${position || '_____________________'}</p>
                                     <p style="margin: 0;">${rank || '_____________________'}</p>
                                 </td>
-                                <td style="width: 50%; text-align: right; vertical-align: top; page-break-inside: avoid;">
-                                    <div style="position: relative; display: inline-block; width: 200px; height: 100px;">
-                                        ${stampHtml ? `
-                                            <div style="position: absolute; top: -30px; left: 0; width: 140px; height: 140px; z-index: 1;">
-                                                ${stampHtml}
-                                            </div>
-                                        ` : ''}
-                                        <div style="position: absolute; bottom: 0; right: 0; z-index: 2;">
-                                            ${signatureHtml}
-                                        </div>
-                                    </div>
+                                <td style="width: 15%; text-align: center; vertical-align: middle; page-break-inside: avoid;">
+                                    ${stampHtml}
+                                </td>
+                                <td style="width: 20%; text-align: center; vertical-align: middle; page-break-inside: avoid;">
+                                    ${signatureHtml}
+                                </td>
+                                <td style="width: 25%; text-align: left; vertical-align: middle; page-break-inside: avoid;">
                                     <p style="margin: 0;">${name || '_____________________'}</p>
                                 </td>
                             </tr>
