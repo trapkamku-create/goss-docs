@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Внутренний портал организации</title>
-    <link rel="stylesheet" href="style.css?v=15">
+    <link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
@@ -25,23 +25,12 @@
         </header>
 
         <nav class="main-nav">
-            <button class="nav-btn active" data-section="laws">Законодательство</button>
-            <button class="nav-btn" data-section="lectures">Лекции для ОСБ</button>
+            <button class="nav-btn active" data-section="lectures">Лекции для ОСБ</button>
             <button class="nav-btn" data-section="docs">Документация ОСБ</button>
-            <button class="nav-btn" data-section="secret">Государственная тайна</button>
         </nav>
 
-        <!-- Раздел «Законодательство» -->
-        <main class="laws-section" id="section-laws">
-            <h2>Законодательство</h2>
-            <input type="text" id="laws-search" placeholder="Поиск по законам и статьям...">
-            <div class="laws-container">
-                <aside class="laws-list" id="laws-list"></aside>
-                <article class="laws-content" id="laws-content">
-                    <p>Выберите закон слева.</p>
-                </article>
-            </div>
-        </main>
+        <!-- Раздел «Лекции для ОСБ» -->
+        <div class="section-placeholder" id="section-lectures" style="display: block;">Раздел «Лекции для ОСБ» в разработке.</div>
 
         <!-- Раздел «Документация ОСБ» -->
         <main class="document-form hidden" id="section-docs">
@@ -204,10 +193,6 @@
 
             <button id="download-btn" class="download-btn">Скачать документ (.docx)</button>
         </main>
-
-        <!-- Заглушки -->
-        <div class="section-placeholder" id="section-lectures">Раздел «Лекции для ОСБ» в разработке.</div>
-        <div class="section-placeholder" id="section-secret">Раздел «Государственная тайна» в разработке.</div>
 
         <footer>
             <p>Игровой проект Amazing Online</p>
