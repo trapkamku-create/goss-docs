@@ -98,6 +98,54 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
 
+// --- Функция удаления белого фона с картинки ---
+function removeWhiteBackground(file) {
+    return new Promise((resolve) => {
+        if (!file) return resolve('');
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    const r = data[i];
+                    const g = data[i + 1];
+                    const b = data[i + 2];
+
+                    // Если пиксель близок к белому — делаем прозрачным
+                    if (r > 230 && g > 230 && b > 230) {
+                        data[i + 3] = 0;
+                    }
+                }
+
+                ctx.putImageData(imageData, 0, 0);
+                resolve(canvas.toDataURL('image/png'));
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+// --- Обычное чтение файла в base64 ---
+function readFileAsDataURL(file) {
+    return new Promise((resolve) => {
+        if (!file) return resolve('');
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.readAsDataURL(file);
+    });
+}
+
 // --- Генерация DOCX ---
 document.getElementById('download-btn').addEventListener('click', () => {
 
@@ -108,16 +156,18 @@ document.getElementById('download-btn').addEventListener('click', () => {
     const signatureFile = document.getElementById('signature-upload').files[0];
     const stampFile = document.getElementById('stamp-upload').files[0];
 
-    function readFileAsDataURL(file) {
-        return new Promise((resolve) => {
-            if (!file) return resolve('');
-            const reader = new FileReader();
-            reader.onload = (e) => resolve(e.target.result);
-            reader.readAsDataURL(file);
-        });
-    }
+    const removeSignatureBg = document.getElementById('signature-remove-bg').checked;
+    const removeStampBg = document.getElementById('stamp-remove-bg').checked;
 
-    Promise.all([readFileAsDataURL(signatureFile), readFileAsDataURL(stampFile)])
+    const signaturePromise = removeSignatureBg
+        ? removeWhiteBackground(signatureFile)
+        : readFileAsDataURL(signatureFile);
+
+    const stampPromise = removeStampBg
+        ? removeWhiteBackground(stampFile)
+        : readFileAsDataURL(stampFile);
+
+    Promise.all([signaturePromise, stampPromise])
         .then(([signatureData, stampData]) => {
 
             const signatureHtml = signatureData
@@ -128,7 +178,6 @@ document.getElementById('download-btn').addEventListener('click', () => {
                 ? `<img src="${stampData}" style="height: 120px;" />`
                 : '<p style="color: #999; font-style: italic;">(место для печати)</p>';
 
-            // Герб: фиксированный размер, сохраняет пропорции
             const gerb = gerbBase64
                 ? `<div style="text-align: center; margin-bottom: 5px;">
                     <img src="${gerbBase64}" width="200" height="120"
