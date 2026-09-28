@@ -150,111 +150,6 @@ body {
     border-color: var(--accent-color);
 }
 
-/* ===== Раздел «Законодательство» ===== */
-.laws-section {
-    max-width: 1100px;
-    margin: 30px auto;
-    background: var(--surface-color);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 0.4s ease;
-}
-
-.laws-section h2 {
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-#laws-search {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    transition: all 0.25s ease;
-}
-
-#laws-search:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
-}
-
-.laws-container {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 20px;
-    height: 500px;
-    max-height: 60vh;
-}
-
-.laws-list {
-    overflow-y: auto;
-    overflow-x: hidden;
-    border-right: 1px solid var(--border-color);
-    padding-right: 15px;
-    height: 100%;
-}
-
-.law-item {
-    padding: 10px;
-    margin-bottom: 8px;
-    background: var(--bg-color);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.25s ease;
-}
-
-.law-item:hover {
-    background: var(--border-color);
-    transform: translateX(4px);
-}
-
-.law-item:active {
-    transform: translateX(2px) scale(0.99);
-}
-
-.law-item.active {
-    background: var(--accent-color);
-    color: #0d1b2a;
-    font-weight: bold;
-}
-
-.laws-content {
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-left: 15px;
-    font-size: 0.95rem;
-    white-space: pre-wrap;
-    height: 100%;
-}
-
-.laws-list::-webkit-scrollbar,
-.laws-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.laws-list::-webkit-scrollbar-track,
-.laws-content::-webkit-scrollbar-track {
-    background: var(--bg-color);
-    border-radius: 4px;
-}
-
-.laws-list::-webkit-scrollbar-thumb,
-.laws-content::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
-}
-
-.laws-list::-webkit-scrollbar-thumb:hover,
-.laws-content::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
-}
-
 /* ===== Форма документа ===== */
 .document-form {
     max-width: 900px;
@@ -468,6 +363,18 @@ textarea:focus {
     font-size: 0.9rem;
 }
 
+/* ===== Подпись внизу разделов ===== */
+.disclaimer {
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.55;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -486,9 +393,7 @@ textarea:focus {
 
 @media (max-width: 700px) {
     .form-grid,
-    .upload-grid,
-    .laws-container {
+    .upload-grid {
         grid-template-columns: 1fr;
-        height: auto;
     }
 }
