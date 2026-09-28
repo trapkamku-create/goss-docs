@@ -163,11 +163,11 @@ document.getElementById('download-btn').addEventListener('click', () => {
                 ? `<img src="${stampData}" style="height: 120px;" />`
                 : '<p style="color: #999; font-style: italic;">(место для печати)</p>';
 
-            // Герб — ширина 200px, высота автоматически
+            // Герб: фиксированный размер, сохраняет пропорции
             const gerb = gerbBase64
                 ? `<div style="text-align: center; margin-bottom: 5px;">
-                    <img src="${gerbBase64}" width="200"
-                         style="width: 200px; height: auto; display: inline-block;" />
+                    <img src="${gerbBase64}" width="200" height="120"
+                         style="width: 200px; height: 120px; object-fit: contain; display: inline-block;" />
                    </div>`
                 : '';
 
