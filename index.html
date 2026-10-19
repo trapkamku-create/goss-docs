@@ -3,251 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>УСБ — Amazing Online</title>
-    <style>
-        /* --- БАЗОВЫЕ СТИЛИ --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #0f172a; /* Темный фон */
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        /* --- ШАПКА --- */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            width: 100%;
-        }
-
-        .logo-placeholder {
-            font-size: 40px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        h1 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #eab308; /* Желтый цвет */
-            font-size: 16px;
-        }
-
-        /* --- БЛОК С КНОПКАМИ (СИММЕТРИЯ) --- */
-        .tabs-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            width: 100%;
-            max-width: 900px;
-        }
-
-        .tab-btn {
-            flex: 1; /* Все кнопки одинаковой ширины */
-            max-width: 280px;
-            padding: 12px 20px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            text-align: center;
-            
-            /* Стили для неактивной кнопки */
-            background-color: transparent;
-            color: #d1d5db;
-            border: 1px solid #4b5563;
-        }
-
-        .tab-btn:hover {
-            background-color: #1f2937;
-            color: #ffffff;
-            border-color: #6b7280;
-        }
-
-        /* Стили для АКТИВНОЙ (желтой) кнопки */
-        .tab-btn.active {
-            background-color: #eab308;
-            color: #0f172a;
-            border: 1px solid #eab308;
-        }
-
-        /* --- БЛОК С КОНТЕНТОМ --- */
-        .content-wrapper {
-            background-color: #1f2937;
-            border-radius: 10px;
-            padding: 40px;
-            width: 100%;
-            max-width: 900px;
-            border: 1px solid #374151;
-            min-height: 250px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .tab-content {
-            display: none; /* Скрыто по умолчанию */
-            animation: fadeIn 0.3s ease;
-        }
-
-        .tab-content.active {
-            display: block; /* Показывается активное */
-        }
-
-        /* Стили текста внутри блоков */
-        h2 {
-            color: #eab308;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: #e5e7eb;
-        }
-
-        ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
-            color: #e5e7eb;
-            line-height: 1.6;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: #374151;
-            margin: 30px 0;
-        }
-
-        .disclaimer {
-            color: #9ca3af;
-            font-style: italic;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        /* Анимация */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Для телефонов */
-        @media (max-width: 768px) {
-            .tabs-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .tab-btn {
-                width: 100%;
-                max-width: 100%;
-            }
-        }
-    </style>
+    <title>Методический материал для государственных структур</title>
+    <link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
 
-    <!-- ШАПКА -->
-    <div class="header">
-        <span class="logo-placeholder">🦅</span> <!-- Замените на вашу картинку, если нужно -->
-        <h1>УСБ — Amazing Online</h1>
-        <div class="subtitle">Методический материал для государственных структур</div>
+    <!-- Стартовый экран -->
+    <div id="splash-screen" class="splash-screen">
+        <img src="img/gerb-bw.png" alt="Герб" class="splash-emblem">
+        <p class="splash-subtitle">Методический материал для государственных структур</p>
+        <button id="start-btn" class="splash-btn">Запустить КПК</button>
+        <div class="splash-bottom">
+            <p class="splash-footer">Игровой проект Amazing Online</p>
+            <p class="splash-disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
+        </div>
     </div>
 
-    <!-- КНОПКИ (Симметрия) -->
-    <div class="tabs-container">
-        <!-- Слева -->
-        <button class="tab-btn" data-target="lectures">Лекции для УСБ</button>
-        
-        <!-- Центр (Активна по умолчанию) -->
-        <button class="tab-btn active" data-target="new-section">Новый раздел УСБ</button>
-        
-        <!-- Справа -->
-        <button class="tab-btn" data-target="documentation">Документация УСБ</button>
-    </div>
+    <!-- Основной портал -->
+    <div id="main-portal" class="main-portal hidden">
+        <header>
+            <img src="img/gerb-bw.png" alt="Герб" class="emblem">
+            <h1>УСБ — Amazing Online</h1>
+            <p>Методический материал для государственных структур</p>
+        </header>
 
-    <!-- БЛОКИ С КОНТЕНТОМ -->
-    <div class="content-wrapper">
+        <nav class="main-nav">
+            <button class="nav-btn active" data-section="lectures">Лекции для ОСБ</button>
+            <button class="nav-btn" data-section="docs">Документация ОСБ</button>
+        </nav>
 
-        <!-- 1. Лекции -->
-        <div id="lectures" class="tab-content">
-            <p>Раздел «Лекции для УСБ» в разработке.</p>
-            <hr>
+        <!-- Раздел «Лекции для ОСБ» -->
+        <div class="section-placeholder" id="section-lectures" style="display: block;">
+            Раздел «Лекции для ОСБ» в разработке.
             <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
         </div>
 
-        <!-- 2. НОВЫЙ РАЗДЕЛ (Сюда вы будете писать текст) -->
-        <div id="new-section" class="tab-content active">
-            <h2>Новый раздел УСБ</h2>
-            <p>Здесь вы можете размещать любую информацию. Просто пишите текст в этом блоке.</p>
-            
-            <p>Пример списка:</p>
-            <ul>
-                <li>Первый пункт правил или регламента</li>
-                <li>Второй пункт</li>
-                <li>Третий пункт</li>
-            </ul>
+        <!-- Раздел «Документация ОСБ» -->
+        <main class="document-form hidden" id="section-docs">
+            <h2>Документ</h2>
 
-            <p>Чтобы добавить текст, в коде найдите этот блок и напишите свой текст между тегами <code>&lt;p&gt;</code> и <code>&lt;/p&gt;</code>.</p>
-            
-            <hr>
+            <section class="form-section">
+                <h3>1. Выберите документ</h3>
+                <select id="doc-type">
+                    <option value="postanovlenie">Постановление о начале служебной проверки</option>
+                    <option value="rezultaty">Результаты служебной проверки</option>
+                    <option value="akt">Акт проведения плановой проверки</option>
+                </select>
+            </section>
+
+            <section class="form-section">
+                <h3>2. Данные</h3>
+
+                <div id="fields-postanovlenie" class="fields-group">
+                    <div class="form-grid">
+                        <label>Дата инцидента <input type="date" id="incident-date"></label>
+                        <label>Время инцидента <input type="time" id="incident-time"></label>
+                        <label>Место происшествия <input type="text" id="incident-place"></label>
+                        <label>ФИО заявителя <input type="text" id="applicant-name"></label>
+                        <label>Должность проверяемого <input type="text" id="check-position"></label>
+                        <label>Звание проверяемого <input type="text" id="check-rank"></label>
+                        <label>ФИО проверяемого <input type="text" id="check-name"></label>
+
+                        <label>Должность проверяющего <input type="text" id="inspector-position"></label>
+                        <label>Звание проверяющего <input type="text" id="inspector-rank"></label>
+                        <label>ФИО проверяющего <input type="text" id="inspector-name"></label>
+
+                        <label>Должность ответственного <input type="text" id="responsible-position"></label>
+                        <label>Звание ответственного <input type="text" id="responsible-rank"></label>
+                        <label>ФИО ответственного <input type="text" id="responsible-name"></label>
+
+                        <label>Должность подписанта <input type="text" id="signer-position"></label>
+                        <label>Звание подписанта <input type="text" id="signer-rank"></label>
+                        <label>ФИО подписанта <input type="text" id="signer-name"></label>
+                    </div>
+                    <label class="full-width">Объяснение ситуации
+                        <textarea id="situation" rows="6"></textarea>
+                    </label>
+                </div>
+
+                <div id="fields-rezultaty" class="fields-group hidden">
+                    <div class="form-grid">
+                        <label>Дата начала проверки <input type="date" id="check-start-date"></label>
+                        <label>Дата инцидента <input type="date" id="res-incident-date"></label>
+                        <label>Время инцидента <input type="time" id="res-incident-time"></label>
+                        <label>Должность проверяемого <input type="text" id="res-check-position"></label>
+                        <label>Звание проверяемого <input type="text" id="res-check-rank"></label>
+                        <label>ФИО проверяемого <input type="text" id="res-check-name"></label>
+                    </div>
+                    <label class="full-width">Суть инцидента
+                        <textarea id="res-situation" rows="5"></textarea>
+                    </label>
+                    <div class="form-grid">
+                        <label>Статья дисциплинарного устава <input type="text" id="res-article"></label>
+                        <label>Пункт статьи <input type="text" id="res-point"></label>
+                    </div>
+                    <label class="full-width">Что регламентирует пункт
+                        <textarea id="res-regulation" rows="4"></textarea>
+                    </label>
+                    <label class="full-width">Дополнительные мероприятия и принятые решения
+                        <textarea id="res-additional" rows="4"></textarea>
+                    </label>
+                    <label class="full-width">Вывод по результатам проверки
+                        <textarea id="res-conclusion" rows="4"></textarea>
+                    </label>
+                    <div class="form-grid">
+                        <label>Должность подписанта <input type="text" id="res-signer-position"></label>
+                        <label>Фамилия И.О. подписанта <input type="text" id="res-signer-name"></label>
+                        <label>Звание подписанта <input type="text" id="res-signer-rank"></label>
+                    </div>
+                </div>
+
+                <div id="fields-akt" class="fields-group hidden">
+                    <div class="form-grid">
+                        <label>Дата проверки <input type="date" id="akt-date"></label>
+                        <label>Время проверки <input type="time" id="akt-time"></label>
+                        <label>Место проверки <input type="text" id="akt-place"></label>
+                        <label>Проверяемое подразделение <input type="text" id="akt-unit"></label>
+                    </div>
+
+                    <label class="full-width">Ответственный проверяющий (должность, звание, ФИО)
+                        <input type="text" id="akt-responsible">
+                    </label>
+
+                    <label class="full-width">Остальные проверяющие (должность, звание, ФИО)
+                        <textarea id="akt-others" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Запрещённые вещества — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-substances-count">
+                    </label>
+
+                    <label class="full-width">Запрещённые вещества — нарушители
+                        <textarea id="akt-substances-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Запрещённое оружие — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-weapons-count">
+                    </label>
+
+                    <label class="full-width">Запрещённое оружие — нарушители
+                        <textarea id="akt-weapons-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Неоплаченные штрафы — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-fines-count">
+                    </label>
+
+                    <label class="full-width">Неоплаченные штрафы — нарушители
+                        <textarea id="akt-fines-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Ошибки в документах (трудовая книжка) — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-docs-count">
+                    </label>
+
+                    <label class="full-width">Ошибки в документах (трудовая книжка) — нарушители
+                        <textarea id="akt-docs-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <label class="full-width">Просроченные лицензии — выявлено (кол-во) / не обнаружено
+                        <input type="text" id="akt-licenses-count">
+                    </label>
+
+                    <label class="full-width">Просроченные лицензии — нарушители
+                        <textarea id="akt-licenses-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
+                    </label>
+
+                    <div class="form-grid">
+                        <label>Должность подписывающего (перед «ОСБ ГАИ») <input type="text" id="akt-signer-position"></label>
+                        <label>Фамилия И.О. подписывающего <input type="text" id="akt-signer-name"></label>
+                        <label>Специальное звание подписывающего (перед «полиции») <input type="text" id="akt-signer-rank"></label>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="form-section">
+                <h3>3. Подпись и печать</h3>
+                <div class="upload-grid">
+                    <label class="upload-box">
+                        <span>Подпись</span>
+                        <input type="file" accept="image/*" id="signature-upload">
+                        <p>Нажмите, чтобы загрузить изображение</p>
+                        <span class="checkbox-label">
+                            <input type="checkbox" id="signature-remove-bg" checked>
+                            Убрать белый фон
+                        </span>
+                    </label>
+                    <label class="upload-box">
+                        <span>Печать</span>
+                        <input type="file" accept="image/*" id="stamp-upload">
+                        <p>Нажмите, чтобы загрузить изображение</p>
+                        <span class="checkbox-label">
+                            <input type="checkbox" id="stamp-remove-bg" checked>
+                            Убрать белый фон
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <button id="download-btn" class="download-btn">Скачать документ (.docx)</button>
+
             <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
-        </div>
+        </main>
 
-        <!-- 3. Документация -->
-        <div id="documentation" class="tab-content">
-            <p>Раздел «Документация УСБ» в разработке.</p>
-            <hr>
-            <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
-        </div>
+        <footer>
+            <p>Игровой проект Amazing Online</p>
+        </footer>
 
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
     </div>
 
-    <!-- СКРИПТ ПЕРЕКЛЮЧЕНИЯ -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.tab-btn');
-            const contents = document.querySelectorAll('.tab-content');
+    <!-- Модальное окно пароля -->
+    <div id="password-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Введите пароль</h3>
+            <input type="password" id="password-input" placeholder="Пароль...">
+            <div class="modal-buttons">
+                <button id="password-submit" class="download-btn">Войти</button>
+                <button id="password-cancel" class="nav-btn">Отмена</button>
+            </div>
+            <p id="password-error" class="password-error hidden">Неверный пароль</p>
+        </div>
+    </div>
 
-            buttons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    // 1. Убираем желтый цвет у всех кнопок
-                    buttons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // 2. Делаем нажатую кнопку желтой
-                    this.classList.add('active');
-
-                    // 3. Скрываем все блоки
-                    contents.forEach(content => content.classList.remove('active'));
-
-                    // 4. Показываем нужный блок
-                    const targetId = this.getAttribute('data-target');
-                    const targetContent = document.getElementById(targetId);
-                    
-                    if (targetContent) {
-                        targetContent.classList.add('active');
-                    }
-                });
-            });
-        });
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
