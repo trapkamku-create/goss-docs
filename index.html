@@ -4,33 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Внутренний портал организации</title>
-    <link rel="stylesheet" href="style.css?v=19">
+    <link rel="stylesheet" href="style.css?v=20">
     
-    <!-- Добавляем стили для новой сетки кнопок -->
+    <!-- Стили для новой сетки кнопок -->
     <style>
         .main-nav {
             display: flex;
-            flex-direction: column; /* Выстраиваем элементы друг под другом */
-            align-items: center;    /* Центрируем всё по горизонтали */
-            gap: 15px;              /* Расстояние между рядами */
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        /* Контейнер для двух нижних кнопок */
         .bottom-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;              /* Расстояние между левой и правой кнопкой */
+            gap: 15px;
             width: 100%;
-            max-width: 600px;       /* Ограничиваем ширину, чтобы они не разъехались */
+            max-width: 900px; /* Увеличили ширину, чтобы влезли три кнопки */
         }
 
-        /* Стили для всех кнопок навигации, чтобы они выглядели одинаково */
         .main-nav .nav-btn {
             flex: 1;
             text-align: center;
             max-width: 280px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            background-color: transparent;
+            color: #d1d5db;
+            border: 1px solid #4b5563;
+        }
+
+        .main-nav .nav-btn:hover {
+            background-color: #374151;
+            color: #ffffff;
+        }
+
+        .main-nav .nav-btn.active {
+            background-color: #eab308;
+            color: #1a1a1a;
+            border: 1px solid #eab308;
+        }
+
+        /* Верхняя кнопка */
+        .main-nav > .nav-btn {
+            width: 100%;
+            max-width: 860px; /* Сделали ее шире, чтобы она была ровно над тремя кнопками */
         }
     </style>
 </head>
@@ -51,18 +76,19 @@
     <div id="main-portal" class="main-portal hidden">
         <header>
             <img src="img/gerb-bw.png" alt="Герб" class="emblem">
-            <h1>УСБ — Amazing Online</h1>
+            <h1>ГАИ — Amazing Online</h1>
             <p>Внутренний портал организации</p>
         </header>
 
-        <!-- НАВИГАЦИЯ (Верхняя кнопка по центру, две нижние симметрично) -->
+        <!-- НАВИГАЦИЯ -->
         <nav class="main-nav">
-            <!-- Верхняя центральная кнопка -->
-            <button class="nav-btn active" data-section="new-section" style="width: 100%; max-width: 575px;">Раздел УСБ</button>
+            <!-- Верхняя кнопка -->
+            <button class="nav-btn active" data-section="new-section">Раздел УСБ</button>
             
-            <!-- Контейнер для нижних кнопок -->
+            <!-- Нижние кнопки (теперь их три) -->
             <div class="bottom-buttons">
                 <button class="nav-btn" data-section="lectures">Лекции для УСБ</button>
+                <button class="nav-btn" data-section="survey">Опрос для УСБ</button> <!-- НОВАЯ КНОПКА -->
                 <button class="nav-btn" data-section="docs">Документация УСБ</button>
             </div>
         </nav>
@@ -81,13 +107,22 @@
             <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
         </div>
 
-        <!-- Раздел «Лекции для УСБ» (скрыт) -->
+        <!-- Раздел «Лекции для УСБ» -->
         <div class="section-placeholder hidden" id="section-lectures">
             Раздел «Лекции для УСБ» в разработке.
             <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
         </div>
 
-        <!-- Раздел «Документация УСБ» (скрыт) -->
+        <!-- НОВЫЙ РАЗДЕЛ «Опрос для УСБ» (Сюда вы потом вставите текст) -->
+        <div class="section-placeholder hidden" id="section-survey">
+            <h2 style="color: #eab308; margin-bottom: 20px;">Опрос для УСБ</h2>
+            <p style="text-align: left; line-height: 1.6; margin-bottom: 15px;">
+                Здесь будет текст опроса. Вы можете добавить его позже, отредактировав этот блок.
+            </p>
+            <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
+        </div>
+
+        <!-- Раздел «Документация УСБ» -->
         <main class="document-form hidden" id="section-docs">
             <h2>Документ</h2>
 
@@ -112,15 +147,12 @@
                         <label>Должность проверяемого <input type="text" id="check-position"></label>
                         <label>Звание проверяемого <input type="text" id="check-rank"></label>
                         <label>ФИО проверяемого <input type="text" id="check-name"></label>
-
                         <label>Должность проверяющего <input type="text" id="inspector-position"></label>
                         <label>Звание проверяющего <input type="text" id="inspector-rank"></label>
                         <label>ФИО проверяющего <input type="text" id="inspector-name"></label>
-
                         <label>Должность ответственного <input type="text" id="responsible-position"></label>
                         <label>Звание ответственного <input type="text" id="responsible-rank"></label>
                         <label>ФИО ответственного <input type="text" id="responsible-name"></label>
-
                         <label>Должность подписанта <input type="text" id="signer-position"></label>
                         <label>Звание подписанта <input type="text" id="signer-rank"></label>
                         <label>ФИО подписанта <input type="text" id="signer-name"></label>
@@ -169,62 +201,48 @@
                         <label>Место проверки <input type="text" id="akt-place"></label>
                         <label>Проверяемое подразделение <input type="text" id="akt-unit"></label>
                     </div>
-
                     <label class="full-width">Ответственный проверяющий (должность, звание, ФИО)
                         <input type="text" id="akt-responsible">
                     </label>
-
                     <label class="full-width">Остальные проверяющие (должность, звание, ФИО)
                         <textarea id="akt-others" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
                     </label>
-
                     <label class="full-width">Запрещённые вещества — выявлено (кол-во) / не обнаружено
                         <input type="text" id="akt-substances-count">
                     </label>
-
                     <label class="full-width">Запрещённые вещества — нарушители
                         <textarea id="akt-substances-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
                     </label>
-
                     <label class="full-width">Запрещённое оружие — выявлено (кол-во) / не обнаружено
                         <input type="text" id="akt-weapons-count">
                     </label>
-
                     <label class="full-width">Запрещённое оружие — нарушители
                         <textarea id="akt-weapons-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
                     </label>
-
                     <label class="full-width">Неоплаченные штрафы — выявлено (кол-во) / не обнаружено
                         <input type="text" id="akt-fines-count">
                     </label>
-
                     <label class="full-width">Неоплаченные штрафы — нарушители
                         <textarea id="akt-fines-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
                     </label>
-
                     <label class="full-width">Ошибки в документах (трудовая книжка) — выявлено (кол-во) / не обнаружено
                         <input type="text" id="akt-docs-count">
                     </label>
-
                     <label class="full-width">Ошибки в документах (трудовая книжка) — нарушители
                         <textarea id="akt-docs-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
                     </label>
-
                     <label class="full-width">Просроченные лицензии — выявлено (кол-во) / не обнаружено
                         <input type="text" id="akt-licenses-count">
                     </label>
-
                     <label class="full-width">Просроченные лицензии — нарушители
                         <textarea id="akt-licenses-violators" rows="4" placeholder="Каждая запись — с новой строки"></textarea>
                     </label>
-
                     <div class="form-grid">
                         <label>Должность подписывающего (перед «ОСБ ГАИ») <input type="text" id="akt-signer-position"></label>
                         <label>Фамилия И.О. подписывающего <input type="text" id="akt-signer-name"></label>
                         <label>Специальное звание подписывающего (перед «полиции») <input type="text" id="akt-signer-rank"></label>
                     </div>
                 </div>
-
             </section>
 
             <section class="form-section">
@@ -252,14 +270,12 @@
             </section>
 
             <button id="download-btn" class="download-btn">Скачать документ (.docx)</button>
-
             <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
         </main>
 
         <footer>
             <p>Игровой проект Amazing Online</p>
         </footer>
-
         <button id="theme-toggle" class="theme-toggle">🌙</button>
     </div>
 
