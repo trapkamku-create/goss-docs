@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Методический материал для государственных структур</title>
+    <title>Внутренний портал организации</title>
     <link rel="stylesheet" href="style.css?v=19">
+    
+    <!-- Добавляем стили для новой сетки кнопок -->
+    <style>
+        .main-nav {
+            display: flex;
+            flex-direction: column; /* Выстраиваем элементы друг под другом */
+            align-items: center;    /* Центрируем всё по горизонтали */
+            gap: 15px;              /* Расстояние между рядами */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для двух нижних кнопок */
+        .bottom-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;              /* Расстояние между левой и правой кнопкой */
+            width: 100%;
+            max-width: 600px;       /* Ограничиваем ширину, чтобы они не разъехались */
+        }
+
+        /* Стили для всех кнопок навигации, чтобы они выглядели одинаково */
+        .main-nav .nav-btn {
+            flex: 1;
+            text-align: center;
+            max-width: 280px;
+        }
+    </style>
 </head>
 <body>
 
     <!-- Стартовый экран -->
     <div id="splash-screen" class="splash-screen">
         <img src="img/gerb-bw.png" alt="Герб" class="splash-emblem">
-        <p class="splash-subtitle">Методический материал для государственных структур</p>
+        <p class="splash-subtitle">Внутренний портал организации</p>
         <button id="start-btn" class="splash-btn">Запустить КПК</button>
         <div class="splash-bottom">
             <p class="splash-footer">Игровой проект Amazing Online</p>
@@ -23,22 +51,43 @@
     <div id="main-portal" class="main-portal hidden">
         <header>
             <img src="img/gerb-bw.png" alt="Герб" class="emblem">
-            <h1>УСБ — Amazing Online</h1>
-            <p>Методический материал для государственных структур</p>
+            <h1>ГАИ — Amazing Online</h1>
+            <p>Внутренний портал организации</p>
         </header>
 
+        <!-- НАВИГАЦИЯ (Верхняя кнопка по центру, две нижние симметрично) -->
         <nav class="main-nav">
-            <button class="nav-btn active" data-section="lectures">Лекции для ОСБ</button>
-            <button class="nav-btn" data-section="docs">Документация ОСБ</button>
+            <!-- Верхняя центральная кнопка -->
+            <button class="nav-btn active" data-section="new-section" style="width: 100%; max-width: 575px;">Новый раздел ОСБ</button>
+            
+            <!-- Контейнер для нижних кнопок -->
+            <div class="bottom-buttons">
+                <button class="nav-btn" data-section="lectures">Лекции для ОСБ</button>
+                <button class="nav-btn" data-section="docs">Документация ОСБ</button>
+            </div>
         </nav>
 
-        <!-- Раздел «Лекции для ОСБ» -->
-        <div class="section-placeholder" id="section-lectures" style="display: block;">
+        <!-- НОВЫЙ РАЗДЕЛ (Открыт по умолчанию) -->
+        <div class="section-placeholder" id="section-new-section" style="display: block;">
+            <h2 style="color: #eab308; margin-bottom: 20px;">Новый раздел ОСБ</h2>
+            <p style="text-align: left; line-height: 1.6; margin-bottom: 15px;">
+                Здесь вы можете размещать любую информацию. Просто пишите текст в этом блоке.
+            </p>
+            <ul style="text-align: left; line-height: 1.6; margin-bottom: 20px; padding-left: 20px;">
+                <li>Первый пункт регламента</li>
+                <li>Второй пункт</li>
+                <li>Третий пункт</li>
+            </ul>
+            <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
+        </div>
+
+        <!-- Раздел «Лекции для ОСБ» (скрыт) -->
+        <div class="section-placeholder hidden" id="section-lectures">
             Раздел «Лекции для ОСБ» в разработке.
             <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
         </div>
 
-        <!-- Раздел «Документация ОСБ» -->
+        <!-- Раздел «Документация ОСБ» (скрыт) -->
         <main class="document-form hidden" id="section-docs">
             <h2>Документ</h2>
 
