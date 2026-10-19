@@ -88,23 +88,37 @@
             <!-- Нижние кнопки (теперь их три) -->
             <div class="bottom-buttons">
                 <button class="nav-btn" data-section="lectures">Лекции для УСБ</button>
-                <button class="nav-btn" data-section="survey">Опрос для УСБ</button> <!-- НОВАЯ КНОПКА -->
+                <button class="nav-btn" data-section="survey">Опрос для УСБ</button>
                 <button class="nav-btn" data-section="docs">Документация УСБ</button>
             </div>
         </nav>
 
-        <!-- НОВЫЙ РАЗДЕЛ (Открыт по умолчанию) -->
-        <div class="section-placeholder" id="section-new-section" style="display: block;">
-            <h2 style="color: #eab308; margin-bottom: 20px;">Раздел УСБ</h2>
-            <p style="text-align: left; line-height: 1.6; margin-bottom: 15px;">
-                Здесь вы можете размещать любую информацию. Просто пишите текст в этом блоке.
-            </p>
-            <ul style="text-align: left; line-height: 1.6; margin-bottom: 20px; padding-left: 20px;">
-                <li>Первый пункт регламента</li>
-                <li>Второй пункт</li>
-                <li>Третий пункт</li>
-            </ul>
-            <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
+        <!-- НОВЫЙ РАЗДЕЛ (Открыт по умолчанию) С ТЕКСТОМ И СКРОЛЛОМ -->
+        <div class="section-placeholder" id="section-new-section" style="display: block; padding: 0; overflow: hidden;">
+            <!-- Обертка для скролла -->
+            <div style="max-height: 500px; overflow-y: auto; padding: 40px; text-align: left;">
+                
+                <h2 style="color: #eab308; margin-bottom: 20px; text-align: center; font-size: 24px;">Раздел УСБ</h2>
+                
+                <div style="margin-bottom: 25px; line-height: 1.7; color: #d1d5db; font-size: 16px;">
+                    <strong style="color: #ffffff; font-size: 18px;">1) УСБ (Управление собственной безопасности)</strong> — защищает права и интересы сотрудников МВД, предупреждает, выявляет и пресекает правонарушения со стороны сотрудников МВД, разрабатывает и реализует меры по противодействию коррупции, взаимодействует с сотрудниками УФСБ для достижения общих целей, проводит силовые операции в условиях ВЧ, а также взаимодействует с другими структурами.
+                </div>
+
+                <h3 style="color: #eab308; margin-bottom: 15px; font-size: 20px;">2) Основные задачи</h3>
+                
+                <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.8; color: #d1d5db; font-size: 16px;">
+                    <li style="margin-bottom: 12px;">разработка и реализация мер по вопросам противодействия коррупции;</li>
+                    <li style="margin-bottom: 12px;">защита прав и интересов сотрудников организации;</li>
+                    <li style="margin-bottom: 12px;">предупреждение, выявления и пресечение правонарушений, планируемых к совершению, совершенных либо совершаемых сотрудниками организации, а также выявление их коррупционных связей;</li>
+                    <li style="margin-bottom: 12px;">предотвращения проникновения на службу в полицию лиц, преследующих противоправные и корыстные цели;</li>
+                    <li style="margin-bottom: 12px;">выявления злоупотребления должностными полномочиями со стороны сотрудников полиции;</li>
+                    <li style="margin-bottom: 12px;">взаимодействовать с органами УФСБ во время исполнения служебной деятельности для достижения общих целей и задач.</li>
+                </ul>
+
+                <hr style="border: 0; height: 1px; background: #374151; margin: 30px 0;">
+                <p class="disclaimer" style="margin-top: 0; text-align: center; color: #9ca3af; font-style: italic;">Создано в рамках игровой сферы, не имеет юридической силы</p>
+                
+            </div>
         </div>
 
         <!-- Раздел «Лекции для УСБ» -->
@@ -113,7 +127,7 @@
             <p class="disclaimer">Создано в рамках игровой сферы, не имеет юридической силы</p>
         </div>
 
-        <!-- НОВЫЙ РАЗДЕЛ «Опрос для УСБ» (Сюда вы потом вставите текст) -->
+        <!-- НОВЫЙ РАЗДЕЛ «Опрос для УСБ» -->
         <div class="section-placeholder hidden" id="section-survey">
             <h2 style="color: #eab308; margin-bottom: 20px;">Опрос для УСБ</h2>
             <p style="text-align: left; line-height: 1.6; margin-bottom: 15px;">
