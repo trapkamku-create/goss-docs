@@ -6,7 +6,7 @@
     <title>Внутренний портал организации</title>
     <link rel="stylesheet" href="style.css?v=20">
     
-    <!-- Стили для новой сетки кнопок -->
+        <!-- Стили для новой сетки кнопок -->
     <style>
         .main-nav {
             display: flex;
@@ -22,7 +22,7 @@
             justify-content: center;
             gap: 15px;
             width: 100%;
-            max-width: 900px; /* Увеличили ширину, чтобы влезли три кнопки */
+            max-width: 900px;
         }
 
         .main-nav .nav-btn {
@@ -36,26 +36,30 @@
             cursor: pointer;
             transition: all 0.3s ease;
             
-            background-color: transparent;
-            color: #d1d5db;
-            border: 1px solid #4b5563;
+            /* ИСПОЛЬЗУЕМ ПЕРЕМЕННЫЕ ИЗ style.css */
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
         }
 
         .main-nav .nav-btn:hover {
-            background-color: #374151;
-            color: #ffffff;
+            /* При наведении делаем кнопку акцентной (желтой/золотой) */
+            background-color: var(--accent-color);
+            color: #0d1b2a; /* Темный текст для контраста с желтым */
+            border-color: var(--accent-color);
         }
 
         .main-nav .nav-btn.active {
-            background-color: #eab308;
-            color: #1a1a1a;
-            border: 1px solid #eab308;
+            /* Активная кнопка всегда акцентная */
+            background-color: var(--accent-color);
+            color: #0d1b2a;
+            border: 1px solid var(--accent-color);
         }
 
         /* Верхняя кнопка */
         .main-nav > .nav-btn {
             width: 100%;
-            max-width: 860px; /* Сделали ее шире, чтобы она была ровно над тремя кнопками */
+            max-width: 860px; 
         }
     </style>
 </head>
